@@ -4,10 +4,12 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
+from database import init_db
+
 
 app = Flask(__name__)
 app.secret_key = "secret123"
-
+init_db()
 # ---------------- DATABASE ----------------
 def get_db():
     return sqlite3.connect("database.db")
