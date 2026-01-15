@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="card" style="width:700px">
+<h2>Class Allotment ({{ day }})</h2>
+
+<form method="post">
+    <button>Shuffle Rooms</button>
+</form>
+
+<table>
+<tr>
+    <th>Dept</th>
+    <th>Year</th>
+    <th>Section</th>
+    <th>Room</th>
+    <th>Change</th>
+</tr>
+
+{% for d in data %}
+<tr>
+<td>{{ d[0] }}</td>   <!-- dept -->
+<td>{{ d[1] }}</td>   <!-- year -->
+<td>{{ d[2] }}</td>   <!-- section -->
+<td>{{ d[3] }}</td>   <!-- room -->
+
+<td>
+<form action="/update" method="post">
+    <input type="hidden" name="dept" value="{{ d[0] }}">
+    <input type="hidden" name="year" value="{{ d[1] }}">
+    <input type="hidden" name="section" value="{{ d[2] }}">
+    <input type="hidden" name="day" value="{{ d[4] }}">
+
+    <input name="room" placeholder="WB301" required>
+    <button>Update</button>
+</form>
+</td>
+</tr>
+{% endfor %}
+</table>
+
+<a href="/download_pdf">
+    <button type="button">Download PDF</button>
+</a>
+
+<a href="/logout">Logout</a>
+</div>
+
+</body>
+</html>

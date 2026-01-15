@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Your Classroom</title>
+</head>
+<body>
+
+<div class="card">
+    <h2>Your Classroom</h2>
+
+    {% if data|length == 0 %}
+        <p>No classroom allocated yet. Please check later.</p>
+    {% else %}
+    <table>
+        <tr>
+            <th>Year</th>
+            <th>Section</th>
+            <th>Room No</th>
+            <th>Day</th>
+        </tr>
+        {% for r in data %}
+        <tr>
+            <td>{{ r[0] }}</td>  <!-- year -->
+            <td>{{ r[1] }}</td>  <!-- section -->
+            <td>{{ r[2] }}</td>  <!-- room -->
+            <td>{{ r[3] }}</td>  <!-- day -->
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <a href="/logout">Logout</a>
+</div>
+
+</body>
+</html>
